@@ -10,8 +10,8 @@ const Aside = props => {
         <DropDown 
         icon={true} 
         menuType="location" 
-        menuData={["order1", "order2", "order3", "order4", "order5"]}>
-        Order no</DropDown>
+        menuData={["set1", "set2", "set3", "set4", "set5"]}>
+        Set no</DropDown>
         {/* <DropDown icon={true} menuType="location" menuData={["test1", "test2"]}>test no</DropDown> */}
         <Button width={350}>세부 결과 확인</Button>
       </Nav>

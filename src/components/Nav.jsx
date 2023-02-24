@@ -108,7 +108,7 @@ const Nav = () => {
             <InputButtonCheck onClick={handleCheckBtnOnClick
             }>∨</InputButtonCheck>
           </InputButtonBox>
-          <Input type="number" value={value} placeholder={"횟수(100회 미만 가능)"} onChange={handleChange} />
+            value={value} placeholder={"횟수(100회 미만 가능)"} onChange={handleChange} />
           </InputBox>
 
         <Button bgColor="blue" width={100}>
