@@ -26,7 +26,6 @@ const Aside = props => {
         <SimulationItem>시뮬레이션 횟수 : {}</SimulationItem>
 
       </SimulationList>
-      {/*Fleet 데이터*/}
       <Table>
         <TableHeader>
           <Cell>Fleet 데이터</Cell>
@@ -67,8 +66,7 @@ const Aside = props => {
 
         </TableBody>
       </Table>
-
-      {/*Set 데이터*/}
+      
       <Table>
         <TableHeader>
           <Cell>Set 데이터</Cell>
