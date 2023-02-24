@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from './Button';
 import DropDown from './DropDown';
+import { useQuery } from 'react-query';
 
 const Aside = props => {
   return (
@@ -13,7 +14,7 @@ const Aside = props => {
         menuData={["set1", "set2", "set3", "set4", "set5"]}>
         Set no</DropDown>
         {/* <DropDown icon={true} menuType="location" menuData={["test1", "test2"]}>test no</DropDown> */}
-        <Button width={350}>세부 결과 확인</Button>
+        <Button width={350} type="submit">세부 결과 확인</Button>
       </Nav>
       <Title>선택한 시뮬레이션 데이터</Title>
 

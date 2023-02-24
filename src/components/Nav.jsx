@@ -7,29 +7,11 @@ import Clock from './Clock';
 
 const Nav = () => {
   const [value, setValue] = useState(undefined);  
-  const [timeDisabled, setTimeDisabled] = useState(true);
 
-  const timeDisabling = () => {
-    setTimeDisabled(!timeDisabled);
-  }
   const handleChange = (e) => {
     const inputValue = e.target.value;
 
-  // function Label({ onClick }) {
-  //   return <div onClick={onClick}>{<Label htmlFor="data_algorithm">알고리즘</Label>}</div>;
-  // }
   
-  // function DropDown({ disabled }) {
-  //   return (
-  //     <select disabled={disabled}>
-  //       <option>지역타입</option>
-  //       <option>시작시간</option>
-  //       <option>종료시간</option>
-  //     </select>
-  //   );
-  // }
-
-
     //입력 횟수 99이하로 제한
     if (inputValue.match(/^\d{0,2}$/) 
     && (inputValue === '' || parseInt(inputValue) >= 1 && parseInt(inputValue) <= 99)
@@ -86,7 +68,7 @@ const Nav = () => {
 
           <InputLabelBox>
             <Label htmlFor="data_algorithm">알고리즘</Label>
-            <input type="radio" name="data" id="data_algorithm" onChange={timeDisabling}/>
+            <input type="radio" name="data" id="data_algorithm" />
           </InputLabelBox>
           <InputLabelBox>
             <Label htmlFor="data_normal">기존데이터</Label>
@@ -95,8 +77,8 @@ const Nav = () => {
         </RadioBox>
 
         <DropDown icon={true} menuType="location" menuData={["빌링게임", "포스터시티", "팔로알토"]}>지역타입</DropDown>
-        <DropDown menuType="time" disabled={timeDisabled}>시작시간</DropDown>
-        <DropDown menuType="time" disabled={timeDisabled}>종료시간</DropDown>
+        <DropDown menuType="time">시작시간</DropDown>
+        <DropDown menuType="time">종료시간</DropDown>
 
         <InputBox>
           {/* <InputButtonBox>
@@ -108,10 +90,10 @@ const Nav = () => {
             <InputButtonCheck onClick={handleCheckBtnOnClick
             }>∨</InputButtonCheck>
           </InputButtonBox>
-            value={value} placeholder={"횟수(100회 미만 가능)"} onChange={handleChange} />
+          <Input type="number" value={value} placeholder={"횟수(100회 미만 가능)"} onChange={handleChange} />
           </InputBox>
 
-        <Button bgColor="blue" width={100}>
+        <Button bgColor="blue" width={100} type="submit">
           결과 확인
         </Button>
       </NavContent>
