@@ -7,6 +7,8 @@ import Clock from './Clock';
 
 const Nav = () => {
   const [value, setValue] = useState(undefined); 
+  const [quantity, setQuantity] = useState(undefined);
+
   //알고리즘 선택시 시작시간, 종료시간 없애기 
   const [isDropDownEnabled, setIsDropDownEnabled] = useState(true);
   const handleDataAlgorithmClick = () => {
@@ -27,13 +29,25 @@ const Nav = () => {
   const handleChange = (event) => {
     const inputValue = setValue(event.target.value);
  
-    //입력 횟수 99이하로 제한
+    //입력 횟수 99 이하로 제한
     if (inputValue.match(/^\d{0,2}$/) 
     && (inputValue === '' || parseInt(inputValue) >= 1 && parseInt(inputValue) <= 99)
     ) {
       setValue(inputValue);
     }
   }
+  //주문 수량 30회 이하로 제한 
+  const handleChanged = (event) => {
+    const inputQuantity = setQuantity(event.target.value);
+ 
+    //입력 횟수 99이하로 제한
+    if (inputQuantity.match(/^\d{0,2}$/) 
+    && (inputQuantity === '' || parseInt(inputQuantity) >= 1 && parseInt(inputQuantity) <= 30)
+    ) {
+      setQuantity(inputQuantity);
+    }
+  }
+
 
   const handleCheckBtnOnClick = () => {
     if (value === undefined) {
@@ -106,8 +120,19 @@ const Nav = () => {
           onChange={handleChange}
           disabled={devMode}
           />
-          </InputBox>
-
+        </InputBox>
+        <InputBox>
+          <InputButtonBox>
+            <InputButtonCheck onClick={handleCheckBtnOnClick
+            }>∨</InputButtonCheck>
+          </InputButtonBox>
+          <Input 
+          type="number" 
+          value={value}
+          placeholder={"주문 수량(30개 이하 가능)"} 
+          onChange={handleChanged}
+          />
+        </InputBox>
         <Button bgColor="blue" width={100} type="submit">
           결과 확인
         </Button>

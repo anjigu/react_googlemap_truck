@@ -2,9 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from './Button';
 import DropDown from './DropDown';
-import { useQuery } from 'react-query';
+import axios from 'axios';
+
 
 const Aside = props => {
+  const handleButtonClick = () => {
+    axios.get('/order')
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+  
   return (
     <Layout>
       <Nav>
@@ -14,7 +25,11 @@ const Aside = props => {
         menuData={["set1", "set2", "set3", "set4", "set5"]}>
         Set Data.</DropDown>
         {/* <DropDown icon={true} menuType="location" menuData={["test1", "test2"]}>test no</DropDown> */}
-        <Button width={350} type="submit">세부 결과 확인</Button>
+        <Button 
+        width={350} 
+        type="submit"
+        onClick={handleButtonClick}
+        >세부 결과 확인</Button>
       </Nav>
       {/* <Title>선택한 시뮬레이션 데이터</Title>
 
