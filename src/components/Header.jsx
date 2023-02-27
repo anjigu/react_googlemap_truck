@@ -5,7 +5,7 @@ const Header = props => {
     <Layout>
 
       <img src={require("../assets/logo.png")} width={50} height={50} />
-      <TitleText>Shinstarr Simulation Map</TitleText>
+      <TitleText>Simulation Map</TitleText>
     </Layout>
   );
 };
