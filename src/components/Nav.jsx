@@ -6,12 +6,26 @@ import Clock from './Clock';
 
 
 const Nav = () => {
-  const [value, setValue] = useState(undefined);  
+  const [value, setValue] = useState(undefined); 
+  //알고리즘 선택시 시작시간, 종료시간 없애기 
+  const [isDropDownEnabled, setIsDropDownEnabled] = useState(true);
+  const handleDataAlgorithmClick = () => {
+    setIsDropDownEnabled(false);
+  };
+  //비개발 선택시 횟수 1로 고정하기
+  const [devMode, setDevMode] = useState(false);
+  const handleDevModeChange = (event) => {
+    setDevMode(event.target.checked);
+    if (!event.target.checked) {
+      setValue(0);
+    }
+  };
 
-  const handleChange = (e) => {
-    const inputValue = e.target.value;
-
-  
+  // const handleChange = (e) => {
+  //   const inputValue = e.target.value;
+  const handleChange = (event) => {
+    const inputValue = setValue(event.target.value);
+ 
     //입력 횟수 99이하로 제한
     if (inputValue.match(/^\d{0,2}$/) 
     && (inputValue === '' || parseInt(inputValue) >= 1 && parseInt(inputValue) <= 99)
@@ -19,27 +33,6 @@ const Nav = () => {
       setValue(inputValue);
     }
   }
-
-  // const handleAddBtnOnClick = () => {
-  //   if (value === undefined) {
-  //     setValue(1)
-  //     return;
-  //   }
-  //   setValue(value + 1)
-  // }
-  // const handleMinusBtnOnClick = () => {
-  //   if (value <= 1) {
-  //     alert('1회 미만으로 설정할 수 없습니다.')
-  //     return;
-  //   }
-
-  //   if (value === undefined) {
-  //     setValue(1)
-  //     return;
-  //   }
-
-  //   setValue(value - 1)
-  // }
 
   const handleCheckBtnOnClick = () => {
     if (value === undefined) {
@@ -55,42 +48,63 @@ const Nav = () => {
       <NavContent>
         <RadioBox>
           <InputLabelBox>
-          {/*비개발 클릭 시, 횟수 비활성화 및 1회 고정*/}
-            <Label htmlFor="dev_false">비개발용</Label>
-            <input type="radio" name="dev" id="dev_false" />
+            <Label htmlFor="dev_true">개발용</Label>
+            <input 
+            type="radio" 
+            name="dev" 
+            id="dev_true"
+            checked={!devMode}
+            onChange={handleDevModeChange}
+             />
           </InputLabelBox>
           <InputLabelBox>
-            <Label htmlFor="dev_true">개발용</Label>
-            <input type="radio" name="dev" id="dev_true" />
+          {/*비개발 클릭 시, 횟수 비활성화 및 1회 고정*/}
+            <Label htmlFor="dev_false">비개발용</Label>
+            <input 
+            type="radio" 
+            name="dev" 
+            id="dev_false"
+            checked={devMode}
+            onChange={handleDevModeChange}
+            />
           </InputLabelBox>
         </RadioBox>
         <RadioBox>
 
           <InputLabelBox>
-            <Label htmlFor="data_algorithm">알고리즘</Label>
-            <input type="radio" name="data" id="data_algorithm" />
+            <Label htmlFor="data_algorithm">알고리즘</Label> 
+            <input 
+            type="radio" 
+            name="data" 
+            id="data_algorithm" 
+            onClick={handleDataAlgorithmClick}
+            />
           </InputLabelBox>
           <InputLabelBox>
             <Label htmlFor="data_normal">기존데이터</Label>
-            <input type="radio" name="data" id="data_normal" />
+            <input 
+            type="radio" 
+            name="data" 
+            id="data_normal"
+            onClick={!handleDataAlgorithmClick} />
           </InputLabelBox>
         </RadioBox>
 
         <DropDown icon={true} menuType="location" menuData={["빌링게임", "포스터시티", "팔로알토"]}>지역타입</DropDown>
-        <DropDown menuType="time">시작시간</DropDown>
-        <DropDown menuType="time">종료시간</DropDown>
-
+      {isDropDownEnabled && <DropDown menuType="time">시작시간</DropDown>}
+      {isDropDownEnabled &&<DropDown menuType="time">종료시간</DropDown>}
         <InputBox>
-          {/* <InputButtonBox>
-            <InputButtonPlus onClick={handleAddBtnOnClick
-            }>+</InputButtonPlus>
-            <InputButtonMinus onClick={handleMinusBtnOnClick}>-</InputButtonMinus>
-          </InputButtonBox> */}
           <InputButtonBox>
             <InputButtonCheck onClick={handleCheckBtnOnClick
             }>∨</InputButtonCheck>
           </InputButtonBox>
-          <Input type="number" value={value} placeholder={"횟수(100회 미만 가능)"} onChange={handleChange} />
+          <Input 
+          type="number" 
+          value={devMode ? 1 : value}
+          placeholder={"횟수(100회 미만 가능)"} 
+          onChange={handleChange}
+          disabled={devMode}
+          />
           </InputBox>
 
         <Button bgColor="blue" width={100} type="submit">
