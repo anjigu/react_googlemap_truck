@@ -88,6 +88,7 @@ const Nav = () => {
             id="dev_false"
             checked={devMode}
             onChange={handleDevModeChange}
+            onClick={handleDataClick}
             />
           </InputLabelBox>
         </RadioBox>
