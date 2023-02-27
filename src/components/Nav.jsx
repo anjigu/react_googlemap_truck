@@ -9,6 +9,12 @@ const Nav = () => {
   const [value, setValue] = useState(undefined); 
   const [quantity, setQuantity] = useState(undefined);
 
+  //비개발용, 기존데이터 선택시 주문 수량 없애기
+  const [data, setData] = useState(true);
+  const handleDataClick = () => {
+    setData(false);
+  }
+
   //알고리즘 선택시 시작시간, 종료시간 없애기 
   const [isDropDownEnabled, setIsDropDownEnabled] = useState(true);
   const handleDataAlgorithmClick = () => {
@@ -23,6 +29,8 @@ const Nav = () => {
       setValue(0);
     }
   };
+ 
+  
 
   // const handleChange = (e) => {
   //   const inputValue = e.target.value;
@@ -40,7 +48,6 @@ const Nav = () => {
   const handleChanged = (event) => {
     const inputQuantity = setQuantity(event.target.value);
  
-    //입력 횟수 99이하로 제한
     if (inputQuantity.match(/^\d{0,2}$/) 
     && (inputQuantity === '' || parseInt(inputQuantity) >= 1 && parseInt(inputQuantity) <= 30)
     ) {
@@ -101,7 +108,8 @@ const Nav = () => {
             type="radio" 
             name="data" 
             id="data_normal"
-            onClick={!handleDataAlgorithmClick} />
+            // onClick={!handleDataAlgorithmClick} 
+            onClick={handleDataClick}/>
           </InputLabelBox>
         </RadioBox>
 
@@ -126,12 +134,12 @@ const Nav = () => {
             <InputButtonCheck onClick={handleCheckBtnOnClick
             }>∨</InputButtonCheck>
           </InputButtonBox>
-          <Input 
+          {data && <Input 
           type="number" 
           value={value}
           placeholder={"주문 수량(30개 이하 가능)"} 
           onChange={handleChanged}
-          />
+          />}
         </InputBox>
         <Button bgColor="blue" width={100} type="submit">
           결과 확인
