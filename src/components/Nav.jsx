@@ -12,6 +12,7 @@ const Nav = () => {
   const handleDataAlgorithmClick = () => {
     setIsDropDownEnabled(false);
   };
+
   //비개발 선택시 횟수 1로 고정하기
   const [devMode, setDevMode] = useState(false);
   const handleDevModeChange = (event) => {

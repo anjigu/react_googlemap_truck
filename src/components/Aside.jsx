@@ -12,11 +12,11 @@ const Aside = props => {
         icon={true} 
         menuType="location" 
         menuData={["set1", "set2", "set3", "set4", "set5"]}>
-        Set no</DropDown>
+        Set Data.</DropDown>
         {/* <DropDown icon={true} menuType="location" menuData={["test1", "test2"]}>test no</DropDown> */}
         <Button width={350} type="submit">세부 결과 확인</Button>
       </Nav>
-      <Title>선택한 시뮬레이션 데이터</Title>
+      {/* <Title>선택한 시뮬레이션 데이터</Title>
 
       <SimulationList>
         <SimulationItem>시뮬레이션 지역 : {}</SimulationItem>
@@ -25,13 +25,12 @@ const Aside = props => {
         <SimulationItem>메뉴 조리 시간 기준 : {}</SimulationItem>
         <SimulationItem>시뮬레이션 횟수 : {}</SimulationItem>
 
-      </SimulationList>
-      <Table>
+      </SimulationList> */}
+      {/* <Table>
         <TableHeader>
           <Cell>Fleet 데이터</Cell>
           <Cell></Cell>
         </TableHeader>
-        {/*표1 데이터 값*/}
         <TableBody>
           <Row>
             <Cell>set 당 주문 수량 평균</Cell>
@@ -65,7 +64,7 @@ const Aside = props => {
 
 
         </TableBody>
-      </Table>
+      </Table> */}
       
       <Table>
         <TableHeader>
@@ -75,12 +74,18 @@ const Aside = props => {
          {/*표2 데이터 값*/}
         <TableBody>
           <Row>
-            <Cell>총 배달량</Cell>
+            <Cell>배달 시작 시간</Cell>
             <Cell></Cell>
           </Row>
 
           <Row>
-            <Cell>트럭 당 배달량</Cell>
+            <Cell>배달 종료 시간</Cell>
+            <Cell></Cell>
+
+          </Row>
+
+          <Row>
+            <Cell>총 배달 주문량</Cell>
             <Cell></Cell>
 
           </Row>
@@ -90,20 +95,6 @@ const Aside = props => {
             <Cell></Cell>
 
           </Row>
-
-          <Row>
-            <Cell>트럭 당 배달 소요 시간</Cell>
-            <Cell></Cell>
-
-          </Row>
-
-          <Row>
-            <Cell>주문 당 배달 소요 시간</Cell>
-            <Cell></Cell>
-
-          </Row>
-
-
         </TableBody>
       </Table>
 
