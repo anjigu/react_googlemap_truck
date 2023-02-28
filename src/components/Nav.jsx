@@ -29,15 +29,10 @@ const Nav = () => {
       setValue(0);
     }
   };
- 
   
-
-  // const handleChange = (e) => {
-  //   const inputValue = e.target.value;
+  //입력 횟수 99 이하로 제한
   const handleChange = (event) => {
     const inputValue = setValue(event.target.value);
- 
-    //입력 횟수 99 이하로 제한
     if (inputValue.match(/^\d{0,2}$/) 
     && (inputValue === '' || parseInt(inputValue) >= 1 && parseInt(inputValue) <= 99)
     ) {
